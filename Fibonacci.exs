@@ -67,7 +67,7 @@ def fib_p(num) when num < 0, do: "This is a negative number"
  		[{_, maximum}] = :ets.lookup(:fib_series,:maximum)
  		[{_, n1}] = :ets.lookup(:fib_series, maximum)
  		[{_, n2}] = :ets.lookup(:fib_series, maximum - 1)
-        :ets.insert(:fib_series,{maximum + 1, n1 + n2})
+                :ets.insert(:fib_series,{maximum + 1, n1 + n2})
  		:ets.insert(:fib_series,{:maximum, maximum + 1})
  		fib_p(num)
  	end
