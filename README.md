@@ -1,5 +1,19 @@
 # FibonacciServer
 
+Components used: 
+
+#### Plug:
+a simple HTTP server from scratch using the PlugCowboy Elixir library. Cowboy is a simple HTTP server for Erlang and Plug will provide us with a connection adapter for that web server.
+Currently our server configured to run at http://localhost:8080
+
+#### Poison:
+fastest JSON library for Elixir.
+
+#### StreamData (ExUnitProperties)
+Provides macros for property-based testing and helps in generating random test data
+
+#### Coverex
+Elixir test Coverage tool
 
 
 ### Installation 
