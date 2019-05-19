@@ -1,11 +1,11 @@
 defmodule FibonacciServer.RouterTest do
-    use ExUnit.Case, async: true
+    use ExUnit.Case, async: false
     use Plug.Test
     require  Poison
 
     @opts Fib.Router.init([])
 
-    setup_all do
+    setup_all do   ## Need to restart the application to clear the ets which are populated from previous testsuit 
         Application.stop(:fibonacci_server)
         Application.start(:fibonacci_server)
     end

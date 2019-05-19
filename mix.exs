@@ -7,7 +7,8 @@ defmodule FibonacciServer.MixProject do
       version: "0.1.0",
       elixir: "~> 1.9-dev",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      tool: Coverex.Task
     ]
   end
 
@@ -26,7 +27,8 @@ defmodule FibonacciServer.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 3.0"},
-      {:stream_data, "~> 0.1", only: :test}
+      {:stream_data, "~> 0.1", only: :test},
+      {:coverex, "~> 1.4.10", only: :test}
     ]
   end
 end

@@ -1,6 +1,6 @@
 defmodule FibonacciServer.FibCalcTest do
   use ExUnitProperties
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
   
 
   test "It returns fibonaaci for a single given number" do
@@ -34,12 +34,14 @@ property "Property based testing: Random Integer as Input" do
     end
   end
 
-#  property "Property based testing: Random List as Input"  do
-#    check all list <- list_of(integer(4..10), min_length: 2) do
-#    feb_list = FibCalc.calc(list)
-#    assert FibCalc.calc(hd(feb_list)) == FibCalc.calc(hd(feb_list)-1)+ FibCalc.calc(hd(feb_list)-2)
-#  end
-# end
+property "Property based testing: Random List as Input"  do
+    check all list <- list_of(integer(4..20), min_length: 8) do
+     feb_list = FibCalc.calc(list)
+     random_index = Enum.random(0..7)
+     {:ok, rand_fib } = Enum.fetch(feb_list,random_index)
+     assert FibCalc.calc(rand_fib) == FibCalc.calc(rand_fib-1)+ FibCalc.calc(rand_fib-2)
+   end
+ end
 
 
 end
