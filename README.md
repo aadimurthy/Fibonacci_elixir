@@ -2,7 +2,7 @@
 
 
 
-## Installation 
+# Installation 
 
 ```
 1)  mix deps.get
@@ -11,12 +11,18 @@
  
 ```
 
-## To run test cases 
+# To run test cases 
 ```
  mix test --seed 0
 ```
 
-## To Check APIs 
+# Test Coverage
+
+```
+mix test --seed 0 --cover
+```
+
+# To Check APIs 
 ```
 
 Input : 
