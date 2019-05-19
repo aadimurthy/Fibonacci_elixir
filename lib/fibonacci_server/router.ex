@@ -15,13 +15,17 @@ defmodule Fib.Router do
     end
 
     get "/count" do
-        count = FibCalc.get_count
-        send_resp(conn, 200, Poison.encode!(count))
+        body = 
+        FibCalc.get_count
+        |> Poison.encode!
+        send_resp(conn, 200, body)
     end
 
     get "/history" do
-         history = FibCalc.get_history
-         send_resp(conn, 200, Poison.encode!(history))
+        body = 
+         FibCalc.get_history
+         |> Poison.encode!
+         send_resp(conn, 200,body)
     end
   
     match _ do
