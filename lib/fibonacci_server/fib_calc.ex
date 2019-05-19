@@ -23,11 +23,13 @@ defmodule FibCalc do
                           Task.await(y) 
                         end)
     end
+
     
     def calc(num) do 
         res = fib_p(num)
         store_and_incr(num,res)
     end
+    
     
     def get_history do
         :ets.match_object(:results_count, {:"$0", :"$1", :"$2"})

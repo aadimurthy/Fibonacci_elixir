@@ -9,7 +9,7 @@ defmodule Fib.Router do
   
     post "/input" do
         {:ok, data, _conn} = read_body(conn)
-        %{"input" => input} = Poison.decode!(~s(#{data}))
+        %{"input" => input} = Poison.decode!(data)
         result  = FibCalc.calc input
         send_resp(conn, 200,  Poison.encode!(%{result: result}))
     end
