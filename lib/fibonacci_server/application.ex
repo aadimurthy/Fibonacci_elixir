@@ -7,7 +7,7 @@ defmodule FibonacciServer.Application do
   require Logger
 
   def start(_type, _args) do
-    Fibonacci.start
+    FibCalc.init
     children = [
       {Plug.Cowboy, scheme: :http, plug: Fib.Router, options: [port: 8080]},
     ]

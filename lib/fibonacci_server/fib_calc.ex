@@ -3,8 +3,8 @@
 #   iex(2)> Fibonacci.calc [112,23,45,677,899]
 #   iex(3)> Fibonacci.calc 12
 
-defmodule Fibonacci do
-    def start() do 
+defmodule FibCalc do
+    def init() do 
       :ets.new(:fib_series, [:set, :public,:named_table]) 
       :ets.insert(:fib_series,{0,0})
       :ets.insert(:fib_series,{1,1})
@@ -30,16 +30,16 @@ defmodule Fibonacci do
     end
     
     def get_history do
-        raw_result = :ets.match_object(:results_count, {:"$0", :"$1", :"$2"})
-        Enum.map(raw_result, fn {num, res, _count} ->  
+        :ets.match_object(:results_count, {:"$0", :"$1", :"$2"})
+                 |> Enum.map(fn {num, res, _count} ->  
                                 %{num => res} 
                              end)
     end                     
     
     
     def get_count do
-        raw_result = :ets.match_object(:results_count, {:"$0", :"$1", :"$2"})
-        Enum.map(raw_result, fn {num, _res, count} ->  
+        :ets.match_object(:results_count, {:"$0", :"$1", :"$2"})
+                 |> Enum.map(fn {num, _res, count} ->  
                                 %{num => count} 
                              end)
     end                         
@@ -66,10 +66,10 @@ defmodule Fibonacci do
              [{_, maximum}] = :ets.lookup(:fib_series,:maximum)
              [{_, n1}] = :ets.lookup(:fib_series, maximum)
              [{_, n2}] = :ets.lookup(:fib_series, maximum - 1)
-            :ets.insert(:fib_series,{maximum + 1, n1 + n2})
+             :ets.insert(:fib_series,{maximum + 1, n1 + n2})
              :ets.insert(:fib_series,{:maximum, maximum + 1})
              fib_p(num)
          end
       end
      
-    end
+ end

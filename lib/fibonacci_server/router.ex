@@ -10,17 +10,17 @@ defmodule Fib.Router do
     post "/input" do
         {:ok, data, _conn} = read_body(conn)
         %{"input" => input} = Poison.decode!(~s(#{data}))
-        result  = Fibonacci.calc input
+        result  = FibCalc.calc input
         send_resp(conn, 200,  Poison.encode!(%{result: result}))
     end
 
     get "/count" do
-        count = Fibonacci.get_count
+        count = FibCalc.get_count
         send_resp(conn, 200, Poison.encode!(count))
     end
 
     get "/history" do
-         history = Fibonacci.get_history
+         history = FibCalc.get_history
          send_resp(conn, 200, Poison.encode!(history))
     end
   
