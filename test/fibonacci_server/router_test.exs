@@ -5,6 +5,11 @@ defmodule FibonacciServer.RouterTest do
 
     @opts Fib.Router.init([])
 
+    setup_all do
+        Application.stop(:fibonacci_server)
+        Application.start(:fibonacci_server)
+    end
+
     test "it returns the Fibonnaci result in JSON format with single number as input" do
         # Create a test connection
         conn = conn(:post, "/input", Poison.encode!(%{:input=>100}))
