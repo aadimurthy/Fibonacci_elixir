@@ -1,21 +1,56 @@
 # FibonacciServer
 
-**TODO: Add description**
 
-## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `fibonacci_server` to your list of dependencies in `mix.exs`:
+## Installation 
 
-```elixir
-def deps do
-  [
-    {:fibonacci_server, "~> 0.1.0"}
-  ]
-end
+```
+1)  mix deps.get
+ 
+2)  mix run --no-halt
+ 
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/fibonacci_server](https://hexdocs.pm/fibonacci_server).
+## To run test cases 
+```
+ mix test --seed 0
+```
+
+## To Check APIs 
+```
+
+Input : 
+
+$ curl -X POST   http://127.0.0.1:8080/input   -H 'Content-Type: application/json'   -d '{"input": [0,1,100]}'
+{"result":[0,1,354224848179261915075]}
+
+$ curl -X POST   http://127.0.0.1:8080/input   -H 'Content-Type: application/json'   -d '{"input": [12,34,56,77]}'
+{"result":[144,5702887,225851433717,5527939700884757]}
+
+$ curl -X POST   http://127.0.0.1:8080/input   -H 'Content-Type: application/json'   -d '{"input": 100}'
+{"result":354224848179261915075}
+
+$ curl -X POST   http://127.0.0.1:8080/input   -H 'Content-Type: application/json'   -d '{"input": [23]}'
+{"result":[28657]}
+
+Count: 
+
+curl -X GET   http://127.0.0.1:8080/count 
+[{"77":1},{"1":3},{"56":1},{"23":1},{"12":1},{"34":1},{"0":3},{"100":4}]
+
+History : 
+
+$ curl -X GET   http://127.0.0.1:8080/history 
+[{"77":5527939700884757},{"1":1},{"56":225851433717},{"23":28657},{"12":144},{"34":5702887},{"0":0},{"100":354224848179261915075}]
+
+```
+
+
+
+
+
+ 
+ 
+
+
 
