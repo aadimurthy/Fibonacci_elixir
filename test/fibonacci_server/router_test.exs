@@ -69,5 +69,18 @@ defmodule FibonacciServer.RouterTest do
         assert conn.status == 200
         assert Poison.decode(conn.resp_body) == {:ok, [%{"40" => 102334155}, %{"20" => 6765}, %{"10" => 55}, %{"100" => 354224848179261915075}, %{"30" => 832040}]}
     end 
+    
+    test "it returns the error for wrong end point" do
+        # Create a test connection
+        conn = conn(:get, "/")
+    
+        # Invoke the plug
+        conn = Fib.Router.call(conn, @opts)
+    
+        # Assert the response and status
+        assert conn.state == :sent
+        assert conn.status == 404
+        assert conn.resp_body == "Oops!"
+    end    
       
 end
