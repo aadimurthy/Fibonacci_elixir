@@ -13,13 +13,13 @@
 
 ### To run test cases 
 ```
- mix test --seed 0
+ mix test --seed 0 --trace
 ```
 
 ### To test coverage
 
 ```
-mix test --seed 0 --cover
+mix test --seed 0 --trace --cover
 ```
 
 ### To check APIs 

@@ -28,16 +28,16 @@ defmodule FibonacciServer.FibCalcTest do
  #     end
  # end
 
-property "Property based testing: Random Integer as Input" do
-     check all int <- integer(2..100) do
+property "Property based testing: Random Integers (upto 10000) as Input" do
+     check all int <- integer(2..10000) do
      assert FibCalc.calc(int) == FibCalc.calc(int-1)+ FibCalc.calc(int-2)
     end
   end
 
-property "Property based testing: Random List as Input"  do
+property "Property based testing: Random Lists (min length:8) as Input"  do
     check all list <- list_of(integer(4..20), min_length: 8) do
      feb_list = FibCalc.calc(list)
-     random_index = Enum.random(0..7)
+     random_index = Enum.random(0..(length(feb_list)-1))
      {:ok, rand_fib } = Enum.fetch(feb_list,random_index)
      assert FibCalc.calc(rand_fib) == FibCalc.calc(rand_fib-1)+ FibCalc.calc(rand_fib-2)
    end
